@@ -17,3 +17,4 @@
 
 bool	ft_isnumber(const char *str);
 long	ft_atol(const char *str);
+char    **ft_split(const char *str, char sep);

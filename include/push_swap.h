@@ -17,7 +17,8 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <stdbool.h>
-
+#include <limits.h>
+#include <stdio.h>
 #include "../libft/libft.h"
 
 typedef	struct s_node
@@ -29,4 +30,13 @@ typedef	struct s_node
 	struct s_node	*next;
 	struct	s_node	*prev;
 } t_node;
+
+t_node  *find_last(t_node *stack);
+void    append_node(t_node  **stack, int n);
+bool 	error_duplicate(t_node *a, int n);
+void    stack_init(t_node **a, char **argv);
+void    free_stack(t_node   **stack);
+void    free_errors(t_node **a);
+
+
 #endif
