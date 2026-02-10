@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dde-paul <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/02/10 10:36:46 by dde-paul          #+#    #+#             */
+/*   Updated: 2026/02/10 11:35:28 by dde-paul         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../include/push_swap.h"
 
 static void push(t_node **dest, t_node **src)
@@ -9,7 +21,7 @@ static void push(t_node **dest, t_node **src)
     node = *src;
     *src = (*src)->next;
     if (*src)
-        (*src)->prev = NULL;
+	(*src)->prev = NULL;
     node->next = *dest;
     if (*dest)
         (*dest)->prev = node;
