@@ -16,7 +16,7 @@ static void swap(t_node **stack)
 {
     int temp_val;
 
-    if (!*stack || !(*stack)->next)
+    if (!*stack || !stack || !(*stack)->next)
         return ;
     temp_val = (*stack)->value;
     (*stack)->value = (*stack)->next->value;
@@ -25,18 +25,26 @@ static void swap(t_node **stack)
 
 void    sa(t_node **a)
 {
+    if (!*a || !(*a)->next)
+        return ;
     swap(a);
     write(1, "sa\n", 3);
 }
 
 void    sb(t_node **b)
 {
+    if (!*b || !(*b)->next)
+        return ;
     swap(b);
     write(1, "sb\n", 3);
 }
 
 void    ss(t_node **a, t_node **b)
 {
+    if (!*a || !(*a)->next)
+        return ;
+    if (!*b || !(*b)->next)
+        return ;
     swap(a);
     swap(b);
     write(1, "ss\n", 3);

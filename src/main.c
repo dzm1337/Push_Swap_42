@@ -23,33 +23,93 @@ int main(int argc, char **argv)
     return (0);
 }
 */
+void    print_status(t_node *a, t_node *b)
+{
+    t_node  *tmp;
+
+    printf("\n----- STACK-A -----\n");
+    tmp = a;
+    while (tmp)
+    {
+        printf("Value: %d", tmp->value);
+        if (tmp->prev)
+            printf("->prev: %d", tmp->prev->value);
+        else
+            printf("->[prev: NULL]");
+        printf("\n");
+        tmp = tmp->next;
+    }
+    printf("\n----- STACK-B -----\n");
+    tmp = b;
+    while (tmp)
+    {
+        printf("Value: %d", tmp->value);
+        if (tmp->prev)
+            printf("->prev: %d", tmp->prev->value);
+        else
+            printf("->[prev: NULL]");
+        printf("\n");
+        tmp = tmp->next;
+    }
+	printf("----------------\n");
+}
+
+void    print_nodelen(t_node *stack, char *name)
+{
+    printf("\n--- %s ---\n", name);
+    while (stack)
+    {
+        if (stack->above_median == true)
+            printf("Value: %d | Index %d | Above Median: %s\n", stack->value, stack->index, "SIM");
+        else
+            printf("Value: %d | Index %d | Above Median: %s\n", stack->value, stack->index, "NAO");
+        stack = stack->next;
+    }
+}
+
 int main(int argc, char **argv)
 {
-    t_node *a;
-    t_node *temp;
+    t_node  *a;
+    t_node  *b;
 
     a = NULL;
-
-    // 1. Validação básica de argumentos
+    b = NULL;
     if (argc < 2)
-        return (0); // Se não tem argumentos, não faz nada
-    
-    // 2. Inicializa a stack (Parsing)
-    // Passamos 'argv + 1' para pular o nome do programa
+        return (0);
     stack_init(&a, argv + 1);
+    set_current_position(a);
+    printf("TESTING WITH %d NUMBERS\n", stack_len(a)); // lenght of the stack
+    print_nodelen(a, "STACK A"); // testing len/index/above_median
+    //testing the commands
+    printf("INICIAL STATUS (AFTER PARSER)");
+    print_status(a, b);
 
-    // 3. TESTE: Imprime a lista para ver se funcionou
-    printf("--- Stack A ---\n");
-    temp = a;
-    while (temp)
-    {
-        printf("Node: %d\n", temp->value);
-        temp = temp->next;
-    }
-    printf("---------------\n");
+    printf("\nEXECUTING pb, pb, sa (2 TIMES)\n");
+    pb(&b, &a);
+    pb(&b, &a);
+    sa(&a);
+    print_status(a, b);
 
-    // 4. Limpa tudo (evita memory leaks)
+    printf("\nEXECUTING ra (MOVE THE TOP TO THE END OF A)\n");
+    ra(&a);
+    print_status(a, b);
+
+    printf("\nEXECUTING rra (END OF A BACK TO THE TOP)\n");
+    rra(&a);
+    print_status(a, b);
+
+    printf("\nDOUBLE OPERATIONS: ss, rr, rra\n");
+    ss(&a, &b);
+    rr(&a, &b);
+    rrr(&a, &b);
+    print_status(a, b);
+
+    printf("\nCLEANING EVERYTHING WITH PA...\n");
+    while (b)
+        pa(&a, &b);
+    print_status(a, b);
+
     free_stack(&a);
-
+    free_stack(&b);
     return (0);
 }

@@ -36,3 +36,57 @@ void    append_node(t_node  **stack, int n)
         node->prev = last_node;
     }
 }
+
+t_node  *find_max(t_node *stack)
+{
+    long    max;
+    t_node  *max_node;
+
+    if (!stack)
+        return (NULL);
+    max = LONG_MIN;
+    while (stack)
+    {
+        if(stack->value > max)
+        {
+            max = stack->value;
+            max_node = stack;
+        }
+        stack = stack->next;
+    }
+    return (max_node);
+}
+
+t_node  *find_min(t_node *stack)
+{
+    long    min;
+    t_node  *min_node;
+    if (!stack)
+        return (NULL);
+    min = LONG_MAX;
+    while (stack)
+    {
+        if (stack->value < min)
+        {
+            min = stack->value;
+            min_node = stack;
+        }
+        stack = stack->next;
+    }
+    return (min_node);
+}
+
+int stack_len(t_node *stack)
+{
+    int count;
+    
+    if (!stack)
+        return (0);
+    count = 0;
+    while (stack)
+    {
+        count++;
+        stack = stack->next;
+    }
+    return (count);
+}

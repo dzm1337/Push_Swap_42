@@ -16,7 +16,7 @@ static void push(t_node **dest, t_node **src)
 {
     t_node  *node;
 
-    if (!*src || !src)
+    if (!src || !*src)
         return ;
     node = *src;
     *src = (*src)->next;
@@ -35,7 +35,7 @@ void    pa(t_node **a, t_node **b)
     write(1, "pa\n", 3);
 }
 
-void    pb(t_node **a, t_node **b)
+void    pb(t_node **b, t_node **a)
 {
     push(b, a);
     write(1, "pb\n", 3);
