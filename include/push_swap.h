@@ -53,5 +53,16 @@ void    rrr(t_node  **a, t_node **b);
 t_node  *find_min(t_node *stack);
 t_node  *find_max(t_node *stack);
 void    set_current_position(t_node *stack);
-int stack_len(t_node *stack);
+int 		stack_len(t_node *stack);
+t_node  *get_cheapest(t_node *stack);
+void    set_target_a(t_node *a, t_node *b);
+void    set_cost_a(t_node *a, t_node *b);
+void    set_cheapest(t_node *stack);
+bool    is_sorted(t_node *stack);
+void	move_a_to_b(t_node **a, t_node **b);
+void	move_b_to_a(t_node **a, t_node **b);
+void	finish_rotation(t_node **stack, t_node *top_node, char stack_name);
+void    init_nodes_a(t_node *a, t_node *b);
+void    init_nodes_b(t_node *a, t_node *b);
+
 #endif
