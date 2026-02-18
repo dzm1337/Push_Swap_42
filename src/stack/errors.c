@@ -37,3 +37,15 @@ void    free_errors(t_node **a)
     write(1, ERROR_MSG, 6);
     exit(1);
 }
+
+void	free_matrix(char **argv)
+{
+	int	i;
+
+	i = -1;
+	if (NULL == argv)
+		return ;
+	while (argv[++i])
+		free(argv[i]);
+	free(argv);
+}

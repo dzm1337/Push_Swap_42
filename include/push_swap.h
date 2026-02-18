@@ -64,5 +64,8 @@ void	move_b_to_a(t_node **a, t_node **b);
 void	finish_rotation(t_node **stack, t_node *top_node, char stack_name);
 void    init_nodes_a(t_node *a, t_node *b);
 void    init_nodes_b(t_node *a, t_node *b);
-
+void    sort_stacks(t_node **a, t_node **b);
+void    sort_three(t_node **a);
+void    min_on_top(t_node **a);
+void	free_matrix(char **argv);
 #endif
