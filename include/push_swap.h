@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dde-paul <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/02/21 17:19:14 by dde-paul          #+#    #+#             */
+/*   Updated: 2026/02/21 17:19:26 by dde-paul         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
@@ -19,14 +31,11 @@ typedef struct s_node
 	struct s_node	*prev;
 }	t_node;
 
-/* --- Funções de Erro e Parsing --- */
 void	stack_init(t_node **a, char **argv);
 void	free_matrix(char **argv);
 void	free_stack(t_node **stack);
 void	free_errors(t_node **a);
 bool	error_duplicate(t_node *a, int n);
-
-/* --- Utilitários de Stack --- */
 int		stack_len(t_node *stack);
 bool	is_sorted(t_node *stack);
 t_node	*find_last(t_node *stack);
@@ -34,8 +43,6 @@ t_node	*find_min(t_node *stack);
 t_node	*find_max(t_node *stack);
 t_node	*get_cheapest(t_node *stack);
 void	append_node(t_node **stack, int n);
-
-/* --- Comandos --- */
 void	pa(t_node **a, t_node **b);
 void	pb(t_node **b, t_node **a);
 void	sa(t_node **a);
@@ -47,8 +54,6 @@ void	rr(t_node **a, t_node **b);
 void	rra(t_node **a);
 void	rrb(t_node **b);
 void	rrr(t_node **a, t_node **b);
-
-/* --- Algoritmo --- */
 void	set_current_position(t_node *stack);
 void	set_cost_a(t_node *a, t_node *b);
 void	set_cheapest(t_node *stack);
