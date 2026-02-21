@@ -6,7 +6,7 @@
 /*   By: dde-paul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 10:49:34 by dde-paul          #+#    #+#             */
-/*   Updated: 2026/02/10 11:48:13 by dde-paul         ###   ########.fr       */
+/*   Updated: 2026/02/21 16:10:58 by dde-paul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 static void	rotate(t_node **stack)
 {
-	t_node *first;
-	t_node *last;
-	
+	t_node		*first;
+	t_node		*last;
+
 	if (!stack || !*stack || !(*stack)->next)
 		return ;
 	first = *stack;

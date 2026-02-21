@@ -6,21 +6,19 @@
 /*   By: dde-paul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 18:57:25 by dde-paul          #+#    #+#             */
-/*   Updated: 2026/02/08 19:07:09 by dde-paul         ###   ########.fr       */
+/*   Updated: 2026/02/21 16:06:58 by dde-paul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "../include/push_swap.h"
+
 static size_t	ft_countwords(const char *s, char sep)
 {
-	int i;
-	int	count;
+	size_t	i;
+	size_t	count;
 
 	if (!s)
 		return (0);
-	if (sep == '\0')
-		return (1);
 	i = 0;
 	count = 0;
 	while (s[i])
@@ -45,7 +43,7 @@ static char	*ft_cpywords(const char *s, char sep)
 	i = 0;
 	while (s[i] && s[i] != sep)
 		i++;
-	dest = malloc(sizeof(char) * (i + 1));
+	dest = (char *)malloc(sizeof(char) * (i + 1));
 	if (!dest)
 		return (NULL);
 	i = 0;
@@ -58,7 +56,7 @@ static char	*ft_cpywords(const char *s, char sep)
 	return (dest);
 }
 
-void	ft_free_split(char	**str, int count)
+static char	**ft_free_split(char **str, int count)
 {
 	int	i;
 
@@ -69,37 +67,31 @@ void	ft_free_split(char	**str, int count)
 		i++;
 	}
 	free(str);
+	return (NULL);
 }
 
-char	**ft_split(const char	*str, char sep)
+char	**ft_split(const char *str, char sep)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 	char	**res;
 
 	if (!str)
 		return (NULL);
-	res = malloc(sizeof(char *) * (ft_countwords(str, sep) + 1));
+	res = (char **)malloc(sizeof(char *) * (ft_countwords(str, sep) + 1));
 	if (!res)
 		return (NULL);
-	j = 0;
 	i = 0;
-	while (str[i])
+	j = 0;
+	while (j < (int)ft_countwords(str, sep))
 	{
-		while (str[i] == sep && str[i])
+		while (str[i] == sep)
 			i++;
-		if (str[i])
-		{
-			res[j] = ft_cpywords(&str[i], sep);
-			if (!res[j])
-			{
-				ft_free_split(res, j);
-				return (NULL);
-			}
-			j++;
-			while (str[i] && str[i] != sep)
-				i++;
-		}
+		res[j] = ft_cpywords(&str[i], sep);
+		if (!res[j++])
+			return (ft_free_split(res, j - 1));
+		while (str[i] && str[i] != sep)
+			i++;
 	}
 	res[j] = NULL;
 	return (res);

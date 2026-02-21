@@ -6,7 +6,7 @@
 /*   By: dde-paul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 17:58:29 by dde-paul          #+#    #+#             */
-/*   Updated: 2026/02/08 18:13:03 by dde-paul         ###   ########.fr       */
+/*   Updated: 2026/02/21 16:03:12 by dde-paul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ bool	ft_isnumber(const char *str)
 {
 	int		i;
 	bool	has_digit;
-	
+
 	has_digit = false;
 	i = 0;
 	if (!str || str[0] == '\0')
